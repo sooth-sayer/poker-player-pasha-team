@@ -35,7 +35,7 @@ func GetRank(cards Cards) Rank {
 	startTime := time.Now()
 	resp, _ := client.Do(r)
 	duration := time.Since(startTime)
-	fmt.Printf("Request time %v\n seconds", duration.Seconds())
+	fmt.Printf("Request time %v seconds\n", duration.Seconds())
 
 	defer resp.Body.Close()
 
