@@ -3,7 +3,7 @@ package strategies
 import "log"
 import "github.com/lean-poker/poker-player-go/leanpoker"
 
-func checkBigBed(game *leanpoker.Godeps) bool {
+func checkBigBed(game *leanpoker.Game) bool {
 	player := game.Players[game.InAction]
 
 	result := game.CurrentBuyIn > player.Stack*0.3
