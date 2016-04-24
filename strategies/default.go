@@ -113,7 +113,7 @@ func getRank(game *leanpoker.Game) (int, bool) {
 func raiseOrCall(bet int, game *leanpoker.Game, max float64) int {
 	if game.CurrentBuyIn > bet {
 		log.Printf("raiseOrCall game.CurrentBuyIn > bet, %v, %v", bet, max)
-		return game.CanCall(game.CurrentBuyIn+game.SmallBlind, max)
+		return game.CanCall(game.CurrentBuyIn, max)
 	}
 
 	return bet
