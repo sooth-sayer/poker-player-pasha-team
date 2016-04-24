@@ -30,6 +30,12 @@ func Default(game *leanpoker.Game) int {
 }
 
 func getRank(game *leanpoker.Game) (int, bool) {
+	player := game.Players[game.InAction]
+
+	if player.Stack < 200 {
+		return 1, true
+	}
+
 	cards := game.Cards()
 	b := game.SmallBlind
 
