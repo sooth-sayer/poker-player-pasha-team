@@ -39,11 +39,14 @@ func getRank(game *leanpoker.Game) (int, bool) {
 		max := float64(0)
 		if game.HavePair() {
 			max = 0.5
+			return raiseOrCall(b, game, max), true
 		}
 		if game.IsPictures() {
 			max = 0.3
+			return raiseOrCall(b, game, max), true
 		}
-		return raiseOrCall(b, game, max), true
+
+		return 0, true
 	}
 
 	switch rank.Rank {
