@@ -4,5 +4,5 @@ web:
     - "4711:4711"
 
   volumes:
-    - ./:/go/src/app
+    - ./:/app
     - ~/.bash_history:/root/.bash_history
