@@ -12,6 +12,9 @@ const (
 )
 
 func Default(game *leanpoker.Game) int {
+
+	log.Printf("Game = %v", game)
+
 	if rank, ok := getRank(game); ok {
 		log.Printf("Make bet = %v", rank)
 		return rank
@@ -23,24 +26,49 @@ func Default(game *leanpoker.Game) int {
 	}
 
 	log.Printf("No strategy. Calling.")
-	return game.Call()
+	return 0
 }
 
 func getRank(game *leanpoker.Game) (int, bool) {
 	cards := game.Cards()
 	b := game.SmallBlind
 
-	if len(cards) < 5 {
-		log.Printf("Less 5 cards")
-		return raiseOrCall(b, game, 0.2), true
-	}
-
 	rank := rank_api.GetRank(cards)
 
 	switch rank.Rank {
+	case 0:
+		if len(cards) < 4 {
+
+			max := float64(0)
+
+			switch rank.Value {
+			case 11, 12, 13:
+				max = 0.3
+			case 14:
+				max = 0.5
+			default:
+				max = 0
+			}
+
+			return raiseOrCall(b, game, max), true
+		}
 	case 1:
 		log.Printf("1 %v %v", game.Cards())
-		return raiseOrCall(b, game, 0.2), true
+		max := 0.2
+
+		if len(cards) < 4 {
+			if game.HavePair() {
+				log.Printf("Have own pair %v %v", game.Cards())
+				max = 0.4
+			}
+
+			switch rank.Value {
+			case 11, 12, 13, 14:
+				max = 0.4
+			}
+		}
+
+		return raiseOrCall(b, game, max), true
 	case 2:
 		log.Printf("2 %v %v", game.Cards())
 		return raiseOrCall(2*b, game, 0.2), true
@@ -65,6 +93,8 @@ func getRank(game *leanpoker.Game) (int, bool) {
 	default:
 		return 0, true
 	}
+
+	return 0, true
 }
 
 func raiseOrCall(bet int, game *leanpoker.Game, max float64) int {

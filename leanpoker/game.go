@@ -58,3 +58,9 @@ func (g *Game) CanCall(bet int, max float64) int {
 
 	return 0
 }
+
+func (g *Game) HavePair() bool {
+	player := g.Players[g.InAction]
+
+	return player.HavePair()
+}

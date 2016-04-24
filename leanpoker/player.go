@@ -44,3 +44,7 @@ func (p *Player) Raise(blind, maxBet, factor int) int {
 
 	return bet
 }
+
+func (p *Player) HavePair() bool {
+	return p.HoleCards[0].SameRank(p.HoleCards[1])
+}
