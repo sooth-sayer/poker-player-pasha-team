@@ -38,11 +38,11 @@ func getRank(game *leanpoker.Game) (int, bool) {
 	if len(cards) < 3 {
 		max := float64(0)
 		if game.HavePair() {
-			max = 0.5
+			max = 0.3
 			return raiseOrCall(b, game, max), true
 		}
 		if game.IsPictures() {
-			max = 0.3
+			max = 0.1
 			return raiseOrCall(b, game, max), true
 		}
 
@@ -52,6 +52,7 @@ func getRank(game *leanpoker.Game) (int, bool) {
 	switch rank.Rank {
 	case 0:
 		log.Printf("0 %v %v", game.Cards())
+
 		if len(cards) < 6 {
 
 			max := float64(0)
@@ -60,25 +61,27 @@ func getRank(game *leanpoker.Game) (int, bool) {
 			case 11, 12, 13:
 				max = 0.1
 			case 14:
-				max = 0.4
+				max = 0.1
 			default:
 				max = 0
 			}
 
 			return raiseOrCall(b, game, max), true
 		}
+
+		return 0, true
 	case 1:
 		log.Printf("1 %v %v", game.Cards())
-		max := 0.2
+		max := 0.5
 
 		if game.HavePair() {
 			log.Printf("Have own pair %v %v", game.Cards())
-			max = 0.4
+			max = 0.7
 		}
 
 		switch rank.Value {
 		case 11, 12, 13, 14:
-			max = 0.4
+			max = 0.6
 		}
 
 		return raiseOrCall(10*b, game, max), true
