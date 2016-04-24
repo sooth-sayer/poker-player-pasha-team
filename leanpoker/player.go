@@ -30,3 +30,17 @@ type Player struct {
 	// except after showdown, when cards revealed are also included.
 	HoleCards []Card `json:"hole_cards"`
 }
+
+func (p *Player) Call(maxBet int) int {
+	return maxBet - p.Bet
+}
+
+func (p *Player) Raise(blind, maxBet, factor int) int {
+	bet := maxBet + (blind * factor)
+
+	if bet > p.Stack {
+		return p.Stack
+	}
+
+	return bet
+}
