@@ -33,3 +33,28 @@ type Game struct {
 	// Finally the array of community cards.
 	CommunityCards []Card `json:"community_cards"`
 }
+
+func (g *Game) Call() int {
+	player := g.Players[g.InAction]
+
+	return player.Call(g.CurrentBuyIn)
+}
+
+func (g *Game) Cards() []Card {
+	player := g.Players[g.InAction]
+
+	cards := make([]Card, 0, 10)
+	cards = append(cards, player.HoleCards...)
+	cards = append(cards, g.CommunityCards...)
+
+	return cards
+}
+
+func (g *Game) CanCall(bet int, max float64) int {
+	player := g.Players[g.InAction]
+	if float64(bet) < max*float64(player.Stack) {
+		return bet
+	}
+
+	return 0
+}
