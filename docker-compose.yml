@@ -1,7 +1,7 @@
 web:
   build: .
   ports:
-    - "8082:8080"
+    - "4711:4711"
 
   volumes:
     - ./:/go/src/app
