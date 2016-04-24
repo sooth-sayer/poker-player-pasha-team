@@ -2,7 +2,7 @@ package player
 
 import "github.com/lean-poker/poker-player-go/leanpoker"
 
-const VERSION = "Default Go folding player"
+const VERSION = "Pasha Team Player 0.0.1"
 
 func BetRequest(state *leanpoker.Game) int {
 	return 1
