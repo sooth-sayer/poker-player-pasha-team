@@ -28,15 +28,14 @@ func Default(game *leanpoker.Game) int {
 
 func getRank(game *leanpoker.Game) (int, bool) {
 	cards := game.Cards()
+	b := game.SmallBlind
 
 	if len(cards) < 5 {
 		log.Printf("Less 5 cards")
-		return 0, false
+		return raiseOrCall(b, game, 0.2), true
 	}
 
 	rank := rank_api.GetRank(cards)
-
-	b := game.SmallBlind
 
 	switch rank.Rank {
 	case 1:
