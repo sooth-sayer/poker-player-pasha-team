@@ -40,20 +40,28 @@ func getRank(game *leanpoker.Game) (int, bool) {
 
 	switch rank.Rank {
 	case 1:
-		return BaseRank, true
+		log.Printf("1 %v %v", game.Cards())
+		return raiseOrCall(b, game, 0.2), true
 	case 2:
-		return raiseOrCall(2*b, game, 0.1), true
+		log.Printf("2 %v %v", game.Cards())
+		return raiseOrCall(2*b, game, 0.2), true
 	case 3:
+		log.Printf("3 %v %v", game.Cards())
 		return raiseOrCall(3*b, game, 0.3), true
 	case 4:
+		log.Printf("4 %v %v", game.Cards())
 		return raiseOrCall(4*b, game, 0.5), true
 	case 5:
+		log.Printf("5 %v %v", game.Cards())
 		return raiseOrCall(5*b, game, 0.5), true
 	case 6:
+		log.Printf("6 %v %v", game.Cards())
 		return raiseOrCall(6*b, game, 1), true
 	case 7:
+		log.Printf("7 %v %v", game.Cards())
 		return raiseOrCall(7*b, game, 1), true
 	case 8:
+		log.Printf("8 %v %v", game.Cards())
 		return raiseOrCall(8*b, game, 1), true
 	default:
 		return 0, true
@@ -62,6 +70,7 @@ func getRank(game *leanpoker.Game) (int, bool) {
 
 func raiseOrCall(bet int, game *leanpoker.Game, max float64) int {
 	if game.CurrentBuyIn > bet {
+		log.Printf("raiseOrCall game.CurrentBuyIn > bet, %v, %v", bet, max)
 		return game.CanCall(game.CurrentBuyIn+game.SmallBlind, max)
 	}
 
