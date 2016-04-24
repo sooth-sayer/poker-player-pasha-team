@@ -64,3 +64,9 @@ func (g *Game) HavePair() bool {
 
 	return player.HavePair()
 }
+
+func (g *Game) IsPictures() bool {
+	player := g.Players[g.InAction]
+
+	return player.HoleCards[0].IsPicture() || player.HoleCards[1].IsPicture()
+}
