@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/lean-poker/poker-player-go/leanpoker"
 )
@@ -31,7 +32,11 @@ func GetRank(cards Cards) Rank {
 	r, _ := http.NewRequest("GET", apiUrl, bytes.NewBufferString(str))
 	r.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
+	startTime := time.Now()
 	resp, _ := client.Do(r)
+	duration := time.Since(startTime)
+	fmt.Printf("Request time %v\n seconds", duration.Seconds())
+
 	defer resp.Body.Close()
 
 	decoder := json.NewDecoder(resp.Body)

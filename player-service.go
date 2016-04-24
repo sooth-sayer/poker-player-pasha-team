@@ -10,7 +10,7 @@ import (
 
 	"github.com/lean-poker/poker-player-go/leanpoker"
 	"github.com/lean-poker/poker-player-go/player"
-	// "github.com/lean-poker/poker-player-go/rank_api"
+	"github.com/lean-poker/poker-player-go/rank_api"
 )
 
 func main() {
@@ -21,12 +21,12 @@ func main() {
 
 	http.HandleFunc("/", handleRequest)
 	log.Printf("Started.")
-	// card1 := leanpoker.Card{"5", "clubs"}
-	// card2 := leanpoker.Card{"6", "clubs"}
-	// card3 := leanpoker.Card{"7", "clubs"}
-	// card4 := leanpoker.Card{"8", "clubs"}
-	// card5 := leanpoker.Card{"9", "clubs"}
-	// rank_api.GetRank([]leanpoker.Card{card1, card2, card3, card4, card5})
+	card1 := leanpoker.Card{"5", "clubs"}
+	card2 := leanpoker.Card{"6", "clubs"}
+	card3 := leanpoker.Card{"7", "clubs"}
+	card4 := leanpoker.Card{"8", "clubs"}
+	card5 := leanpoker.Card{"9", "clubs"}
+	rank_api.GetRank([]leanpoker.Card{card1, card2, card3, card4, card5})
 
 	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
 		log.Fatal(err)
