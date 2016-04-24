@@ -7,8 +7,13 @@ import (
 )
 
 func Default(game *leanpoker.Game) int {
-	if pairRank, ok := checkPair(game); ok {
-		return game.SmallBlind * pairRank
+
+	if rank, ok := checkThree(game); ok {
+		return game.SmallBlind * rank
+	}
+
+	if rank, ok := checkPair(game); ok {
+		return game.SmallBlind * rank
 	}
 
 	if checkBigBed(game) {

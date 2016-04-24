@@ -3,7 +3,7 @@ package player
 import "github.com/lean-poker/poker-player-go/leanpoker"
 import s "github.com/lean-poker/poker-player-go/strategies"
 
-const VERSION = "Pasha Team Player 0.0.5"
+const VERSION = "Pasha Team Player 0.0.6"
 
 func BetRequest(game *leanpoker.Game) int {
 	return s.Default(game)

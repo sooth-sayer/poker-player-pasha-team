@@ -11,3 +11,7 @@ type Card struct {
 func (c *Card) IsPicture() bool {
 	return c.Rank == "J" || c.Rank == "Q" || c.Rank == "K" || c.Rank == "A"
 }
+
+func (c *Card) SameRank(cc Card) bool {
+	return c.Rank == cc.Rank
+}

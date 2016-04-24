@@ -5,10 +5,12 @@ import "github.com/lean-poker/poker-player-go/leanpoker"
 
 const (
 	SmallPairRank = iota
-	MiddlePairRank
-	BigPairRank
-	VeryBigPairRank
-	HugePairRank
+	MiddleRank
+	BigRank
+	VeryBigRank
+	HugeRank
+	VeryHugeRank
+	MaxRank
 )
 
 func checkPair(game *leanpoker.Game) (int, bool) {
@@ -20,10 +22,10 @@ func checkPair(game *leanpoker.Game) (int, bool) {
 		log.Printf("Got own pair")
 
 		if player.HoleCards[0].IsPicture() {
-			return player.Raise(game.SmallBlind, game.CurrentBuyIn, HugePairRank), true
+			return player.Raise(game.SmallBlind, game.CurrentBuyIn, HugeRank), true
 		}
 
-		return player.Raise(game.SmallBlind, game.CurrentBuyIn, BigPairRank), true
+		return player.Raise(game.SmallBlind, game.CurrentBuyIn, BigRank), true
 	}
 
 	for _, c := range player.HoleCards {
@@ -31,11 +33,11 @@ func checkPair(game *leanpoker.Game) (int, bool) {
 			if c.Rank == cc.Rank {
 				log.Printf("Got community pair")
 
-				if player.HoleCards[0].IsPicture() {
-					return player.Raise(game.SmallBlind, game.CurrentBuyIn, VeryBigPairRank), true
+				if c.IsPicture() {
+					return player.Raise(game.SmallBlind, game.CurrentBuyIn, VeryBigRank), true
 				}
 
-				return player.Raise(game.SmallBlind, game.CurrentBuyIn, MiddlePairRank), true
+				return player.Raise(game.SmallBlind, game.CurrentBuyIn, MiddleRank), true
 			}
 		}
 	}
