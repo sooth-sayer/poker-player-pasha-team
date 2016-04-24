@@ -7,5 +7,5 @@ func Default(state *leanpoker.Game) int {
 		return state.SmallBlind * pairRank
 	}
 
-	return 1
+	return state.SmallBlind * 2
 }
