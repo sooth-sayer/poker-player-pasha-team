@@ -37,6 +37,7 @@ func getRank(game *leanpoker.Game) (int, bool) {
 
 	switch rank.Rank {
 	case 0:
+		log.Printf("0 %v %v", game.Cards())
 		if len(cards) < 4 {
 
 			max := float64(0)
