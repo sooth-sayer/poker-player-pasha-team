@@ -80,7 +80,7 @@ func getRank(game *leanpoker.Game) (int, bool) {
 			}
 		}
 
-		return raiseOrCall(b, game, max), true
+		return raiseOrCall(10*b, game, max), true
 	case 2:
 		log.Printf("2 %v %v", game.Cards())
 		return raiseOrCall(10*b, game, 0.8), true
