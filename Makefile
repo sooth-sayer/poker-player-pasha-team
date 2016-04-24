@@ -13,7 +13,7 @@ mkdir_app:
 install_server:
 	go install -a player-service.go
 
-server:
+server: deps
 	go run player-service.go
 deps:
 	go get github.com/lean-poker/poker-player-go/player && \
