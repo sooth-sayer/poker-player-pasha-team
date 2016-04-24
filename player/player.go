@@ -5,11 +5,11 @@ import s "github.com/lean-poker/poker-player-go/strategies"
 
 const VERSION = "Pasha Team Player 0.0.3"
 
-func BetRequest(state *leanpoker.Game) int {
-	return s.Default(state)
+func BetRequest(game *leanpoker.Game) int {
+	return s.Default(game)
 }
 
-func Showdown(state *leanpoker.Game) {
+func Showdown(game *leanpoker.Game) {
 
 }
 
