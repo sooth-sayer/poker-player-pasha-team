@@ -35,7 +35,7 @@ func getRank(game *leanpoker.Game) (int, bool) {
 
 	rank := rank_api.GetRank(cards)
 
-	if len(cards) < 4 {
+	if len(cards) < 3 {
 		max := float64(0)
 		if game.HavePair() {
 			max = 0.5
@@ -49,7 +49,7 @@ func getRank(game *leanpoker.Game) (int, bool) {
 	switch rank.Rank {
 	case 0:
 		log.Printf("0 %v %v", game.Cards())
-		if len(cards) < 3 {
+		if len(cards) < 6 {
 
 			max := float64(0)
 
