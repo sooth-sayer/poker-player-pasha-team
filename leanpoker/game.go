@@ -54,8 +54,8 @@ func (g *Game) CanCall(bet int, max float64) int {
 	player := g.Players[g.InAction]
 	pot := player.Stack
 
-	if pot < player.Pot {
-		pot = player.Pot
+	if pot < player.Bet {
+		pot = player.Bet
 	}
 
 	if float64(bet) < max*float64(pot) {
