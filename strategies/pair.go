@@ -9,10 +9,10 @@ const (
 	BigPairRank
 )
 
-func checkPair(state *leanpoker.Game) (int, bool) {
-	player := state.Players[state.InAction]
+func checkPair(game *leanpoker.Game) (int, bool) {
+	player := game.Players[game.InAction]
 
-	log.Printf("Check pair %v %v", player.HoleCards, state.CommunityCards)
+	log.Printf("Check pair %v %v", player.HoleCards, game.CommunityCards)
 
 	if player.HoleCards[0].Rank == player.HoleCards[1].Rank {
 		log.Printf("Got own pair")
@@ -20,7 +20,7 @@ func checkPair(state *leanpoker.Game) (int, bool) {
 	}
 
 	for _, c := range player.HoleCards {
-		for _, cc := range state.CommunityCards {
+		for _, cc := range game.CommunityCards {
 			if c.Rank == cc.Rank {
 				log.Printf("Got community pair")
 				return player.Raise(game.SmallBlind, game.CurrentBuyIn, MiddlePairRank), true
