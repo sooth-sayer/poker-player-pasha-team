@@ -68,16 +68,14 @@ func getRank(game *leanpoker.Game) (int, bool) {
 		log.Printf("1 %v %v", game.Cards())
 		max := 0.2
 
-		if len(cards) < 4 {
-			if game.HavePair() {
-				log.Printf("Have own pair %v %v", game.Cards())
-				max = 0.4
-			}
+		if game.HavePair() {
+			log.Printf("Have own pair %v %v", game.Cards())
+			max = 0.4
+		}
 
-			switch rank.Value {
-			case 11, 12, 13, 14:
-				max = 0.4
-			}
+		switch rank.Value {
+		case 11, 12, 13, 14:
+			max = 0.4
 		}
 
 		return raiseOrCall(10*b, game, max), true
