@@ -1,4 +1,7 @@
-.PHONY: server, deps
+.PHONY: server, deps, install_server
+
+install_server:
+	go install -a player-service.go
 
 server:
 	go run player-service.go
