@@ -46,7 +46,7 @@ func handleRequest(w http.ResponseWriter, request *http.Request) {
 		result := player.BetRequest(game)
 		fmt.Fprintf(w, "%d", result)
 
-		log.Printf("Result = ", result)
+		log.Printf("Result = %v", result)
 	case "showdown":
 		game, err := parseGame(request.FormValue("game_state"))
 		if err != nil {
