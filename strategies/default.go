@@ -32,7 +32,7 @@ func Default(game *leanpoker.Game) int {
 func getRank(game *leanpoker.Game) (int, bool) {
 	player := game.Players[game.InAction]
 
-	if player.Stack < 200 {
+	if player.Stack < 500 {
 		return 1, true
 	}
 
