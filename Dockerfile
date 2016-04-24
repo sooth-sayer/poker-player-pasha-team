@@ -10,7 +10,7 @@ ENV GOBIN $GOPATH/bin
 ADD . /app
 
 RUN go get github.com/tools/godep
-RUN make deps
+RUN make init
 
 EXPOSE 8080
 
