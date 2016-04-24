@@ -7,3 +7,7 @@ type Card struct {
 	// Suit of the card. Possible values are: clubs,spades,hearts,diamonds
 	Suit string `json:"suit"`
 }
+
+func (c *Card) IsPicture() bool {
+	return c.Rank == "J" || c.Rank == "Q" || c.Rank == "K" || c.Rank == "A"
+}
