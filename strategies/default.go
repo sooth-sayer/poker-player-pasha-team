@@ -84,6 +84,12 @@ func getRank(game *leanpoker.Game) (int, bool) {
 			max = 0.6
 		}
 
+		player := game.Players[game.InAction]
+
+		if int(rank.Value) != player.HoleCards[0].IntRank() && int(rank.Value) != player.HoleCards[1].IntRank() {
+			return raiseOrCall(b, game, 0.01), true
+		}
+
 		return raiseOrCall(10*b, game, max), true
 	case 2:
 		log.Printf("2 %v %v", game.Cards())
