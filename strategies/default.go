@@ -49,15 +49,15 @@ func getRank(game *leanpoker.Game) (int, bool) {
 	switch rank.Rank {
 	case 0:
 		log.Printf("0 %v %v", game.Cards())
-		if len(cards) < 4 {
+		if len(cards) < 3 {
 
 			max := float64(0)
 
 			switch rank.Value {
 			case 11, 12, 13:
-				max = 0.3
+				max = 0.1
 			case 14:
-				max = 0.5
+				max = 0.4
 			default:
 				max = 0
 			}
@@ -83,25 +83,25 @@ func getRank(game *leanpoker.Game) (int, bool) {
 		return raiseOrCall(b, game, max), true
 	case 2:
 		log.Printf("2 %v %v", game.Cards())
-		return raiseOrCall(2*b, game, 0.2), true
+		return raiseOrCall(10*b, game, 0.8), true
 	case 3:
 		log.Printf("3 %v %v", game.Cards())
-		return raiseOrCall(3*b, game, 0.3), true
+		return raiseOrCall(20*b, game, 0.8), true
 	case 4:
 		log.Printf("4 %v %v", game.Cards())
-		return raiseOrCall(4*b, game, 0.5), true
+		return raiseOrCall(20*b, game, 0.8), true
 	case 5:
 		log.Printf("5 %v %v", game.Cards())
-		return raiseOrCall(5*b, game, 0.5), true
+		return raiseOrCall(15*b, game, 0.8), true
 	case 6:
 		log.Printf("6 %v %v", game.Cards())
-		return raiseOrCall(6*b, game, 1), true
+		return raiseOrCall(20*b, game, 1), true
 	case 7:
 		log.Printf("7 %v %v", game.Cards())
-		return raiseOrCall(7*b, game, 1), true
+		return raiseOrCall(100*b, game, 1), true
 	case 8:
 		log.Printf("8 %v %v", game.Cards())
-		return raiseOrCall(8*b, game, 1), true
+		return raiseOrCall(100*b, game, 1), true
 	default:
 		return 0, true
 	}
