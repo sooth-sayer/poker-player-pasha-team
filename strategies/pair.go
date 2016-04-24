@@ -1,6 +1,7 @@
 package strategies
 
 import "log"
+import "github.com/lean-poker/poker-player-go/leanpoker"
 
 const (
 	SmallPairRank = iota
@@ -8,7 +9,7 @@ const (
 	BigPairRank
 )
 
-func checkPair(state) (int, bool) {
+func checkPair(state *leanpoker.Game) (int, bool) {
 	player := state.Players[state.InAction]
 
 	log.Printf("Check pair %v %v", player.HoleCards, state.CommunityCards)
