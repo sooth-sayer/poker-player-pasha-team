@@ -19,6 +19,7 @@ func main() {
 	}
 
 	http.HandleFunc("/", handleRequest)
+	log.Printf("Started.")
 	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
 		log.Fatal(err)
 	}
