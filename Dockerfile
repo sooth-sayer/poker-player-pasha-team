@@ -10,7 +10,10 @@ ENV GOBIN $GOPATH/bin
 ADD . /app
 
 RUN go get github.com/tools/godep
-RUN godep restore
+
+RUN go get github.com/lean-poker/poker-player-go/player
+RUN go get github.com/lean-poker/poker-player-go/leanpoker
+# RUN godep restore
 
 EXPOSE 8080
 
